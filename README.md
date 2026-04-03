@@ -99,7 +99,7 @@ locals {
     Version = "2012-10-17"
     Statement = [
       {
-        Action   = ["s3:ListAllMyBucket"]
+        Action   = ["s3:ListAllMyBuckets"]
         Effect   = "Allow"
         Resource = "*"
       }
@@ -124,8 +124,9 @@ module "ecr" {
 }
 
 module "ecs_cluster" {
-  source          = "./ecs_cluster"
-  resource_prefix = local.resource_prefix
+  source             = "./ecs_cluster"
+  resource_prefix    = local.resource_prefix
+  container_insights = false
 }
 
 module "ecs_scheduler_task" {
